@@ -1,0 +1,255 @@
+
+
+
+Scenario1: Create a Local reposiotry
+
+mkdir myproject
+cd myproject
+git init
+ls -al
+
+Scenario 2: Git configurations
+
+git config --global user.name sonal0409
+git config --global user.email mittal.sonal04@gmail.com
+
+Where are the config saved:
+
+$ ~/.gitconfig
+
+Scenario3: Add files to local repo
+
+$ git status
+$ git add filename  ==>a dd the files to stagging area
+$ git commit -m "message"  --> commits the files which are in stagging area
+
+Scenario 4: git logs
+
+git log  ==> all the commits done on the LR
+
+git log --oneline    
+
+HEAD ==> it reference point ==> it is a latest commit that you did
+
+question: how to save git log into a file.txt
+
+To see what chnages were done in a commit
+
+git show <commitid>
+
+
+Scenario 5: Modify an exisitng file
+
+vim filename
+
+press i
+
+this si my file
+
+press esc key
+:wq!
+
+OR
+
+  echo "this is my file" > index1.html
+
+git add filename
+git commit -m "modification"
+
+OR
+
+git commit -a -m " modifcations add"
+
+
+
+Scenario 6: git diff command
+
+git diff filename
+
+git diff --staged filename
+
+Observation:
+git diff commitid1 commitd2
+
+git show commitd1 commit2
+
+
+scenario 8: git delete
+
+git rm filename   ===> delete file from LR & wD
+
+you will have to commit the deletion
+
+Assigenment
+
+git rm --cached filename ==> delete file from only LR
+
+
+Scenario 7: .gitignore
+
+If you have set of files in your working directory that are not needed to be version controlled
+
+example:
+java code --> compile -->output--> .class files
+log files --> no need to maintain version
+resouce file: xml,  doc, txt
+
+we can set up git to ignore certain files or directories 
+
+create a .gitignore file
+
+in this file add the filename that you want git to ignore
+
+Note: make sure the file to be ignored is not in your local repo/stagging area. it should be a new file, not tracked by GIT
+
+scenario 9: git revert
+
+revert works on commit id
+
+$ git revert commitid
+
+git revert will revert your commit chnages to its previous state
+
+it will open an editor, to enter a message for reverting
+
+===>  revert command when executed will also geenrate a new commit id
+
+
+scenario 10: git reset
+
+resets your commit history
+
+ > $ git reset --hard commitid(HEAD)
+
+it will delete all the commits which are above the given commitid in the command
+
+and chnages will be deleted from LR & WD 
+
+>  git reset --soft commitid
+
+> git reset --mixed commitid
+
+
+
+scenario 11: git branching
+
+Check number of branch
+
+git branch
+
+create a branch
+
+git branch <branchname>
+
+git branch f1
+
+switch to a branch to make chnages
+
+git checkout f1
+
+
+perform some commits
+
+
+Come out of branch
+
+git checkout branchname
+
+git checkout master
+
+
+you should be on the destination branch for you to merge
+
+
+git merge f1 master
+
+all the new commits on f1 brach which ar enot on master will be merged
+
+[OR]
+
+I want to merge only few commits and merge only them
+
+git checkout master
+
+git cherry-pick commitid commid2 commit3
+
+Scenario 12: git merging
+
+Scenario 13: git statsing
+*************************
+have a file -- filex --> changes --> not complete
+
+these changes we want to work in furture ---> you can stash them
+
+chnages will be removed from your WD or stagging area and will be added .git/stash folder
+
+you got a new task to work on immediatly
+
+In future ==> you get back those stashed changes==. you can unstash the changes to WD or stagging area
+
+Note: chnages or new files will be stashed
+
+ > git stash ==> it will take all the chages in the working & stagging are and stash it
+
+ > git stash -p ===>interactive ==> here you can choose what to stash and what not to stash
+
+ > git stash list
+
+ > git show stash@{0}
+
+ > git stash pop stash@{0}
+
+
+github
+
+> open source remote server to save your files and share your files
+> internet connectivity to work on github
+> valid user account to create a repository on github
+
+repository created on github is called remote repository
+
+scenario 1:
+
+
+Configuring Local machine to GITHUB account
+
+whenever we want changes that we have in local repository to be pushed in remote repo on github
+
+we have to be authenticate
+
+communicate from local to github ---> 
+
+1. username/personal access token over https
+
+2. over ssh
+
+
+passwordless authentication:
+
+generate ssh key on your local system
+
+
+ ssh-keygen
+
+press enter 3 times
+
+key will be generated
+
+cat /root/.ssh/id_rsa.pub
+
+go to github --> settings --> ssh & GPG keys --> new ssh key
+
+add the key in github and save
+
+Scenario 2:
+
+Create a remote repository
+**********
+
+Done
+
+Scenario 3:
+
+Push the chnages from local to remote
+
+
