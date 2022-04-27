@@ -1,0 +1,83 @@
+Scenario1: Create a Local reposiotry
+
+mkdir myproject
+cd myproject
+git init
+ls -al
+
+Scenario 2: Git configurations
+
+git config --global user.name sonal0409
+git config --global user.email mittal.sonal04@gmail.com
+
+Where are the config saved:
+
+$ ~/.gitconfig
+
+Scenario3: Add files to local repo
+
+$ git status
+$ git add filename  ==>a dd the files to stagging area
+$ git commit -m "message"  --> commits the files which are in stagging area
+
+Scenario 4: git logs
+
+git log  ==> all the commits done on the LR
+
+git log --oneline    
+
+HEAD ==> it reference point ==> it is a latest commit that you did
+
+question: how to save git log into a file.txt
+
+To see what chnages were done in a commit
+
+git show <commitid>
+
+
+Scenario 5: Modify an exisitng file
+
+vim filename
+
+press i
+
+this si my file
+
+press esc key
+:wq!
+
+OR
+
+  echo "this is my file" > index1.html
+
+git add filename
+git commit -m "modification"
+
+OR
+
+git commit -a -m " modifcations add"
+
+
+
+Scenario 6: git diff command
+
+git diff filename
+
+git diff --staged filename
+
+Observation:
+git diff commitid1 commitd2
+
+git show commitd1 commit2
+
+
+scenario 8: git delete
+
+git rm filename   ===> delete file from LR & wD
+
+you will have to commit the deletion
+
+Assigenment
+
+git rm --cached filename ==> delete file from only LR
+
