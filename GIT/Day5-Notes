@@ -1,0 +1,93 @@
+Scenario 13: git statsing
+*************************
+have a file -- filex --> changes --> not complete
+
+these changes we want to work in furture ---> you can stash them
+
+chnages will be removed from your WD or stagging area and will be added .git/stash folder
+
+you got a new task to work on immediatly
+
+In future ==> you get back those stashed changes==. you can unstash the changes to WD or stagging area
+
+Note: chnages or new files will be stashed
+
+ > git stash ==> it will take all the chages in the working & stagging are and stash it
+
+ > git stash -p ===>interactive ==> here you can choose what to stash and what not to stash
+
+ > git stash list
+
+ > git show stash@{0}
+
+ > git stash pop stash@{0}
+
+
+github
+
+> open source remote server to save your files and share your files
+> internet connectivity to work on github
+> valid user account to create a repository on github
+
+repository created on github is called remote repository
+
+scenario 1:
+
+
+Configuring Local machine to GITHUB account
+
+whenever we want changes that we have in local repository to be pushed in remote repo on github
+
+we have to be authenticate
+
+communicate from local to github ---> 
+
+1. username/personal access token over https
+
+2. over ssh
+
+
+passwordless authentication:
+
+generate ssh key on your local system
+
+
+ ssh-keygen
+
+press enter 3 times
+
+key will be generated
+
+cat /root/.ssh/id_rsa.pub
+
+go to github --> settings --> ssh & GPG keys --> new ssh key
+
+add the key in github and save
+
+Scenario 2:
+
+Create a remote repository
+**********
+
+Done
+
+Scenario 3:
+
+Push the chnages from local to remote
+
+git push origin master
+
+pull & fetch changes
+
+git pull origin master
+
+git fetch origin master
+
+Cloning
+
+git clone <remotereponame>
+
+git clone https://github.com/Sonal0409/18Apr-ClassNotes
+
+Forking.
+Click on fork button on another users repo to perform forking
