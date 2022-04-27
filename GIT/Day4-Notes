@@ -1,0 +1,95 @@
+Scenario 7: .gitignore
+
+If you have set of files in your working directory that are not needed to be version controlled
+
+example:
+java code --> compile -->output--> .class files
+log files --> no need to maintain version
+resouce file: xml,  doc, txt
+
+we can set up git to ignore certain files or directories 
+
+create a .gitignore file
+
+in this file add the filename that you want git to ignore
+
+Note: make sure the file to be ignored is not in your local repo/stagging area. it should be a new file, not tracked by GIT
+
+scenario 9: git revert
+
+revert works on commit id
+
+$ git revert commitid
+
+git revert will revert your commit chnages to its previous state
+
+it will open an editor, to enter a message for reverting
+
+===>  revert command when executed will also geenrate a new commit id
+
+
+scenario 10: git reset
+
+resets your commit history
+
+ > $ git reset --hard commitid(HEAD)
+
+it will delete all the commits which are above the given commitid in the command
+
+and chnages will be deleted from LR & WD 
+
+>  git reset --soft commitid
+
+> git reset --mixed commitid
+
+
+
+scenario 11: git branching
+
+Check number of branch
+
+git branch
+
+create a branch
+
+git branch <branchname>
+
+git branch f1
+
+switch to a branch to make chnages
+
+git checkout f1
+
+
+perform some commits
+
+
+Come out of branch
+
+git checkout branchname
+
+git checkout master
+
+
+you should be on the destination branch for you to merge
+
+
+git merge f1 master
+
+all the new commits on f1 brach which ar enot on master will be merged
+
+[OR]
+
+I want to merge only few commits and merge only them
+
+git checkout master
+
+git cherry-pick commitid commid2 commit3
+
+Scenario 12: git merging
+
+git merge sourcebranchName destBranchname
+
+$ git merge f1 master
+
+$ git rebase matser
