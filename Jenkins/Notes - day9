@@ -210,6 +210,8 @@ Master & Slave Set up in jenkins
 Complete set on Slave machine
 
  > 1 ec2 machine of linux OS
+  > select correct key pain
+  > create security group rule --all traffic, anywhere
  
 connect to server
 
