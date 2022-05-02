@@ -1,0 +1,163 @@
+Agenda:
+
+take the same machine where you jave java, git, jenkins installed
+
+Install docker
+
+$ sudo su -
+
+$ yum install docker -y
+
+
+Start docker
+
+$ systemctl start docker
+
+Scenario1:
+
+Docker Images and pull docker image form docker hub
+
+$ docker images
+> how many images are available locally
+
+Image name is written as : image_name:tagname
+
+to create container, image should be available in local docker host
+
+we need to pull image form docker hub:
+
+$ docker pull ubuntu
+
+$ docker pull tomcat:7
+
+Remove Images:
+
+$ docker rmi ubuntu
+
+from local docker host, untagg and delete the image
+
+$ docker rmi tomcat:7
+
+Scenario 2:
+
+Run docker Image to create container
+
+$ docker run ubuntu
+
+$ docker run nginx
+
+press ctl c to come out of container
+
+List all containers available on the docker host:
+
+$ docker ps -a
+
+ps: process(container)
+-a: all process
+
+Delete a docker container
+
+$ docker rm -f containerid
+
+Start the docker container in foreground mode
+**************
+$ docker run -it --name u1 ubuntu
+
+run command - option:
+
+-it : interactive terminal
+
+> user will inside the container/ attached to the container
+> container will be up & running
+
+--name : option to give unique name to container
+docker host: every container should have unique name
+
+
+Come out of attached container and keep the container running:
+
+press ctl p + ctl q
+
+
+
+Only container create using the "mode" can be started, stopped & attached to it
+
+$ docker run -it --name u1 ubuntu
+
+$ ctlp+ctlq
+
+$ docker stop u1
+
+$ docker start u1
+
+$ docker attach u1  ===> user will be on the terminal of the conatiner
+
+
+start the container in detached mode/background mode
+************
+
+$ docker run -d --name n1 nginx
+
+> Container will be up & running
+> user cursor will be on the host machine
+> user will not be on the container
+
+See all the details of the container:
+***************
+
+docker inspect containername/id
+
+
+
+Delete the container:
+
+$ docker rm -f containerid
+
+Port Mapping to access container from browser
+************************
+In which user can access your container form browser
+
+in this scenarios, the option used is -p
+
+-p : port forwarding or port mapping
+
+-p systemport:containerport
+
+container port : comes from image
+
+systemport: any free port
+
+
+after PM/PF
+
+user will requets to system port and requets will be forwarded to container port
+applicaiton will displayed on the browser
+
+Note:
+
+Port mapping or forwarding has to be only at runtime, when creating te comtainer
+
+if the container is created in docker, you cannnot do port formwarding
+
+you delete the container and recreate it with port forwarding
+
+
+$ docker run -d --name n2 -p 8282:80 nginx
+
+
+$ docker run -d --name n3 -P nginx
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
