@@ -1,0 +1,169 @@
+Master & Slave Set up in jenkins
+
+
+Complete set on Slave machine
+
+ > 1 ec2 machine of linux OS
+ 
+connect to server
+
+$ sudo su -
+
+ > install git 
+  yum install git -y
+
+ > install java
+
+yum install java-1.8.0-openjdk-devel
+
+> install maven
+
+yum install maven
+
+
+Create the workspace directory also known as root directory
+
+ $ cd /tmp
+
+ $ mkdir jenkinsdir
+
+ $ cd jenkinsdir
+
+ $ pwd   ==>it will give present working directory==> /tmp/jenkinsdir
+
+ $ chmod -R 777 /tmp/jenkinsdir   ==> read write permission to directory
+
+Day 10 Notes:
+**********
+
+Initial Configuratio on Master(where jenkins is already installed) for agent communication:
+
+go to manage jenkins
+
+ > go to Configure system
+ > Jenkins IRl value pls give latest jenkins URlv == http://18.217.142.195:8080/
+Save
+
+On jenkins master we need to open ports for agent communication
+
+go to manage jenkins
+
+ > go to Configure global security
+
+ > scroll to Agents ==> select Random option
+
+Save the changes
+
+
+Go to Linux slave and check its configuration
+********
+
+$ sudo su -
+
+ > install git 
+  yum install git -y
+
+ > install java
+
+yum install java-1.8.0-openjdk-devel
+
+> install maven
+
+yum install maven
+
+
+Create the workspace directory also known as root directory
+
+ $ cd /tmp
+
+ $ mkdir jenkinsdir
+
+ $ cd jenkinsdir
+
+ $ pwd   ==>it will give present working directory==> /tmp/jenkinsdir
+
+ $ chmod -R 777 /tmp/jenkinsdir   ==> read write permission to directory  
+
+
+
+Lets configure Master to connect to slave
+
+setting up an Agent on Master:
+
+************
+go to Manage nodes and clouds
+
+All these steps are to be performed on the master machine
+
+  Name to the slave
+  select permanent agent
+  press create
+ 
+  how many job you want to run on the salve at the same time ==> Number of executors = 1
+
+  where the workspace will be created on the slave ==> /tmp/jenkinsdir
+
+  label the slave, give a tag name  ==> give linux_slave
+ 
+  Usage : select the 2nd option ==> only build jobs with label expression matching this node/Agent
+
+  Launch method:  select launch via ssh
+
+  using ssh(secured shell) we will connect to the slave
+
+    > private ip of the slave  ==> 172.31.11.152
+
+  Credentials:
+
+    click on add --> select jenkins
+          > select ssh Username & private key
+            > git id  ==> myid
+            > give description ==> agent credentials
+            > username : ec2-user
+            > private key ==> enter directly ==> copy the pem fiel content form downloads folder
+                    ==> click on add and paste it over there
+   > save
+
+undeer credentials drop down  --> you will see the credenatials.. slect them
+
+
+Host key verififcation: select non verification strategy
+
+Node properties ---> add tool location:
+
+add
+
+defualt is git
+
+go to linux slave ==> execute the command 
+
+$ which git
+
+/usr/bin/git
+
+on jenkins
+Under home add the path == /usr/bin/git
+
+
+click on ADD
+
+ij the drop down select ==> java tool name ==> myjava
+
+go to linux slave ==> execute the command 
+
+mvn --version
+
+take the path of java_home variable
+
+/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.312.b07-1.amzn2.0.2.x86_64
+
+and paste in the master 
+
+Click on save button
+
+agent will connect with master
+
+
+Now lets run jobs on slave
+
+
