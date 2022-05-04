@@ -66,7 +66,7 @@ cd mydockerfile
 cp /var/lib/jenkins/workspace/Package/target/addressbook.war .
 touch dockerfile
 cat <<EOT>> dockerfile
-From tomcat
+From tomcat:9
 ADD addressbook.war /usr/local/tomcat/webapps
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
