@@ -1,0 +1,115 @@
+Docker Volumes:
+
+
+Volume mapping & port mapping to be done while creating the comntainer
+
+if container is already created, you cannot mount volume
+
+Volumes are used to preserve data of the container on the local docker host
+
+In this case if the container get deleted in future, the container data will still be available on the host machine in the volume
+
+Volumes are always available under docker area
+
+/var/lib/docker/volumes   ---> docker area
+
+Types of volumes:
+
+ > Named volume
+
+step1: Create Volume and give a name to it
+
+  $ docker volume create myvol
+
+  $ docker volume inspect myvol
+
+ $ docker volume ls
+
+you will find the volume created user
+
+/var/lib/docker/volumes/myvol/_data
+
+Inside the _data directory, containers data will be preserved
+
+
+Step 2:   mapping (Associating ) volume to the container
+*******
+
+for mapping volume the run option is  -v or --volume
+
+on a container multiple volumes can be mapped
+
+ i) preserving data from container to volume
+
+  which directory of container do you want to preserver :  /tmp
+
+   $ docker run -it --name c1 -v myvol:/tmp centos
+
+
+ container directory whose data will be preserved : /tmp
+
+ where will data be preserved: mount point : /var/lib/docker/volumes/myvol/_data
+
+
+Verify if really data is available in  volume or not
+
+ $ cd /var/lib/docker/volumes/myvol/_data
+
+data from contaienr will be available
+
+
+ii) delete the container and check if data is still available or not on the host machine in volume
+
+
+
+** 2 : data form volume can be made available on the container  ==> by Volume mapping
+
+** 3: share the data between container  ==> using docker volumes
+
+       1 volume cna be mapped to multiple containers
+
+
+**   > /etc/conf.xml this file is on the host machine
+and  i want it to be available on my container logstash in directory  /var/log
+
+Answer: Using volumes we can make data form host directory to be available on container directpry
+
+
+> Bind Mounts
+*********
+
+  mapping any host directory to container directory
+
+ 
+ $ docker run -d -v /hostDir:/containerdir imagename
+
+in this case no named volumed volume is created
+
+no _data folder will be there in /var/lib/docker/volumes
+
+
+
+End to end scenario for deployment of code on a httpd container
+
+Delete containers:
+
+docker rm -f $(docker ps -aq)
+
+Code repository:
+
+https://github.com/Sonal0409/ecomm.git
+
+
+make the code to be available on local docker host
+
+$ cd
+$ git clone https://github.com/Sonal0409/ecomm.git
+
+$ cd ecomm
+
+Create  a container using image httpd and place code files on the container
+
+Access the container from browser
+
+
+  $ docker run -d --name myweb -p 8282:80 -v /root/ecomm:/usr/local/apache2/htdocs/ httpd
