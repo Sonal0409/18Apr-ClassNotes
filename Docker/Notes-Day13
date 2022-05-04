@@ -100,3 +100,54 @@ http://18.221.206.57:32768/addressbook/
 ******************************************************************************
 
 **************************************************
+
+
+
+
+mkdir demoCompose
+cd demoCompose
+
+vi docker-compose.yml
+
+version: '2'
+
+services:
+  compose-test:
+   image: centos:7
+   links:
+    - compose-db
+   command: sleep infinity
+  compose-db:
+   image: redis
+   expose:
+    - "6379"
+
+$ docker-compose up -d
+
+$ docker-compose ps
+
+$ docker-compose exec compose-test /bin/bash
+
+[OR]
+$ docker-compose exec compose-test sh
+
+# yum install -y nc
+# nc compose-db 6379
+# ping
+
+# set name Sonal
+
+# get name
+
+Ctrl+C
+
+# exit
+
+
+$ docker-compose down
+
+
+
+
+
+
