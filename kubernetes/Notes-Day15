@@ -37,3 +37,7 @@ Pod-defination file:
 vim pod-defintion.yml
 
 $ kubectl create -f pod-defintion.yml
+
+OR
+
+$ kubectl create -f https://raw.githubusercontent.com/Sonal0409/18Apr-ClassNotes/main/kubernetes/pod-definition.yml
