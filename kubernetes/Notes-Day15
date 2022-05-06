@@ -1,0 +1,39 @@
+
+query number of slave in the kube cluster
+
+$ kubectl get nodes
+
+$ kubectl get nodes -o wide
+
+query number od pods in the cluster
+
+$ kubectl get pods
+
+
+
+create container in docker
+
+$ docker run -d --name n1 nginx
+
+Create a pod in kube
+
+$ kubectl run pod3 --image nginx
+
+to see details about a container in docker
+
+$ docker inspect containername
+
+
+to see details about a pod in kube
+
+$ kubectl describe object objectname
+
+$ kubectl describe pod pod1 | less
+
+press q to come out of the screen
+
+Pod-defination file:
+
+vim pod-defintion.yml
+
+$ kubectl create -f pod-defintion.yml
