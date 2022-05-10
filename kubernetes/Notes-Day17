@@ -1,0 +1,24 @@
+ 518  kubectl get pv
+  519  kubectl create -f https://raw.githubusercontent.com/Sonal0409/DevOps_ClassNotes/master/Kubernetese/PersistentVolume/pvc.yml
+  520  kubectl get pv
+
+  524  kubectl get pvc
+  525  kubectl get pv
+
+  527  kubectl get pv -o yaml | less
+  
+  529  kubectl get pv
+  530  kubectl get pvc
+  
+  531  kubectl create -f https://raw.githubusercontent.com/Sonal0409/DevOps_ClassNotes/master/Kubernetese/PersistentVolume/pod-pvc.yml
+
+  533  kubectl get pods
+  534  kubectl describe pod pod-pvc | less
+  535  kubectl get pods -o wide
+  536  clear
+  537  kubectl get pods
+  539  kubectl exec -it pod-pvc -- bash
+  # cd data
+  # touch file1 file2
+  
+  data will be rpeserved on the slave wehre the pod is created.
