@@ -21,7 +21,23 @@ kubectl create -f https://raw.githubusercontent.com/Sonal0409/DevOps_ClassNotes/
   # cd data
   # touch file1 file2
   
-  data will be rpeserved on the slave wehre the pod is created.
+  data will be preserved on the slave wehre the pod is created.
+  
+   546  kubectl get namespace
+  547  kubectl create namespace sonal
+  548  kubectl get namespace
+  555  kubectl run pod1 --image nginx -n sonal
+  557  kubectl get pods -n sonal
+  559  kubectl delete pod pod1 -n sonal
+
+
+
+
+
+
+
+
+Extra:
 
 Multi-Container POD:
 
