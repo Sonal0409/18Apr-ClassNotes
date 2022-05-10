@@ -1,5 +1,5 @@
  518  kubectl get pv
-  519  kubectl create -f https://raw.githubusercontent.com/Sonal0409/DevOps_ClassNotes/master/Kubernetese/PersistentVolume/pvc.yml
+kubectl create -f https://raw.githubusercontent.com/Sonal0409/DevOps_ClassNotes/master/Kubernetese/PersistentVolume/pv.yml
   520  kubectl get pv
 
   524  kubectl get pvc
