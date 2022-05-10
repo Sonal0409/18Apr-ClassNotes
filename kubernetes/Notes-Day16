@@ -1,0 +1,132 @@
+# kubectl get nodes
+
+Scenario1: Creation of Pod definition file
+
+ 	# mkdir mynewfiles
+	#cd mynewfiles
+	# ls
+	# vim pod-definition1.yml
+		i
+---
+apiVersion: v1
+kind: Pod
+metadata:
+ name: nginx-pod
+ labels:
+  type: reverse-proxy
+  author: edureka
+spec:
+ containers:
+  - name: mynginx
+    image: nginx
+
+
+
+	# kubectl get pods   
+ 
+// pod will be ready and running
+
+	# kubectl get pods -o wide 
+
+ // will give more information about pods with name of slave on which pod is available.
+	
+	# kubectl get nodes -o wide
+
+
+****************************************************
+
+Create replica Set
+*******************************************
+
+kubectl delete -f pod-definition1.yml
+kubectl delete -f pod-definition2.yml
+kubectl get pods
+	# vim rc-definition.yml
+		i
+
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+ name: tomcat-rc
+ labels:
+  author: edureka
+  type: webserver
+spec:
+ replicas: 3
+ selector:
+  matchLabels:
+   type: webserver
+ template:
+  metadata:
+   name: tomcat-pod
+   labels:
+    type: webserver
+  spec:
+   containers:
+    - name: ng1
+      image: nginx
+
+
+# kubectl get pods 
+# kubectl get pods -o wide
+# kubectl get all
+
+*************************************************
+Scaling of Pods using replica set
+
+Method1:
+
+Open the replica set  and change replicas to 5
+
+save the file
+
+execute this command:
+
+	# kubectl replace -f rc-definition.yml
+
+
+	# kubectl get pods
+
+now desired replicas of tomcat will be running
+
+
+Method2: direct command
+
+increase or decrese the replica count by using this command
+
+	# kubectl scale --replicas=2 -f rc-definition.yml
+
+	# kubectl get pods
+
+//only 2 pods will be running now
+
+
+For opening desired ports:
+gcloud compute firewall-rules create rule1 --allow tcp:8080
+gcloud compute firewall-rules create rule1 --allow tcp:9090
+gcloud compute firewall-rules create rule1 --allow tcp:30008
+
+
+Deployment:
+**********
+  113  kubectl create -f https://raw.githubusercontent.com/Sonal0409/DevOps_ClassNotes/master/Kubernetese/deployment.yml
+  114  kubectl get all
+  115  kubectl scale deploy kubeserve --replicas=2
+  117  kubectl set image deploy kubeserve app=leaddevops/kubeserve:v2
+   122  kubectl rollout status deploy kubeserve  
+  119  kubectl scale deploy kubeserve --replicas=4
+  120  kubectl set image deploy kubeserve app=leaddevops/kubeserve:v3
+   122  kubectl rollout status deploy kubeserve  
+ 123  kubectl rollout undo  deploy kubeserve
+ 127* kubectl delete deploy kubeserve
+  128  kubectl get all
+On slave
+while true;curl serviceipaddress:80;sleep 1;echo " ";done
+
+roll back to specific version
+
+kubectl rollout history deploy kubeserve
+
+kubectl rollout undo  deploy kubeserve  --to-revision=1
+rollback to v1
